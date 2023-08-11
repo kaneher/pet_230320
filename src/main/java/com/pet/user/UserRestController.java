@@ -56,7 +56,7 @@ public class UserRestController {
 	 * @return
 	 * @throws NoSuchAlgorithmException
 	 */
-	@PostMapping("/signUp")
+	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password, @RequestParam("name") String name,
 			@RequestParam("email") String email) throws NoSuchAlgorithmException {
