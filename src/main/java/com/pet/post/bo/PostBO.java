@@ -111,9 +111,9 @@ public class PostBO {
 			
 			// 기존 이미지 제거
 			//-- 업로드가 성공 했고, 기존 이미지 존재하는 경우
-			if (imagePath != null && post.getImagePath() != null) {
+			if (imagePath != null && post.getPostImagePath() != null) {
 				// 이미지 제거
-				fileManager.deleteFile(post.getImagePath());
+				fileManager.deleteFile(post.getPostImagePath());
 			}
 		}
 		
@@ -130,8 +130,8 @@ public class PostBO {
 		}
 		
 		// 기존에 이미지가 있으면 삭제
-		if (post.getImagePath() != null) {
-			fileManager.deleteFile(post.getImagePath());
+		if (post.getPostImagePath() != null) {
+			fileManager.deleteFile(post.getPostImagePath());
 		}
 		
 		postMapper.deletePostByPostIdAndUserId(postId, userId);

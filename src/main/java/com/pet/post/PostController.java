@@ -60,7 +60,7 @@ public class PostController {
 		model.addAttribute("nextId", nextId);
 		model.addAttribute("postList", postList);
 		model.addAttribute("view", "post/postList");
-		return "template/layout";
+		return "template/layout2";
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class PostController {
 	@GetMapping("/post_create_view")
 	public String postCreateView(Model model) {
 		model.addAttribute("view", "post/postCreate");
-		return "template/layout";
+		return "template/layout2";
 	}
 	
 	@GetMapping("/post_detail_view")
@@ -86,6 +86,6 @@ public class PostController {
 		Post post = postBO.getPostByPostIdAndUserId(postId, userId);
 		model.addAttribute("post", post);
 		model.addAttribute("view", "post/postDetail");
-		return "template/layout";
+		return "template/layout2";
 	}
 }

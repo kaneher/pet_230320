@@ -12,7 +12,7 @@ public class Post {
 	private int userId;
 	private String subject;
 	private String content;
-	private String imagePath;
+	private String postImagePath;
 	private ZonedDateTime createdAt;
 	private ZonedDateTime updatedAt;
 }

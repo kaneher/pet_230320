@@ -4,7 +4,9 @@
 <div class="h-100 d-flex align-items-center justify-content-between">
 	<%-- logo --%>
 	<div>
-		<h1 class="font-weight-bold">MyPet</h1>
+		<h1 class="font-weight-bold text-dark">
+			<a href="/dog/user_dog_view" alt="홈 화면으로">MyPet</a>
+		</h1>
 	</div>
 
 	<%-- 로그인 정보 --%>
