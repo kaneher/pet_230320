@@ -23,7 +23,7 @@
 		<nav>
 			<jsp:include page="../include/nav.jsp" />
 		</nav>
-		<section class="contents">
+		<section class="py-3 contents">
 			<jsp:include page="../${view}.jsp" />
 		</section>
 		<footer class="">
