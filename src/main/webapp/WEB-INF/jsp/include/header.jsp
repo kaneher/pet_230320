@@ -4,9 +4,19 @@
 <div class="h-100 d-flex align-items-center justify-content-between">
 	<%-- logo --%>
 	<div>
-		<h1 class="font-weight-bold text-dark">
-			<a href="/dog/user_dog_view" alt="홈 화면으로">MyPet</a>
-		</h1>
+	<%-- 로그인 안 된 상태에서는 홈 버튼 누르면 로그인 화면으로 --%>
+		<c:choose>
+			<c:when test="${not empty userName}">
+				<h1 class="font-weight-bold">
+					<a href="/dog/user_dog_view" alt="내 강아지 정보 화면으로" class="subject">MyPet</a>
+				</h1>
+			</c:when>
+			<c:otherwise>
+				<h1 class="font-weight-bold">
+					<a href="/user/sign_in_view" alt="로그인 화면으로" class="subject">MyPet</a>
+				</h1>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 	<%-- 로그인 정보 --%>

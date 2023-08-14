@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,7 +46,7 @@ public class DogEntity {
 	private int dogWeight;
 	
 	@Column(name = "dogProfileImagePath")
-	private String dogProfileImagePath;
+	private MultipartFile dogProfileImagePath;
 	
 	@UpdateTimestamp
 	@Column(name = "createdAt", updatable = false)

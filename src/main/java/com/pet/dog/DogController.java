@@ -31,4 +31,15 @@ public class DogController {
 		return "template/layout2";
 	}
 	
+	/**
+	 * 견종 정보 화면
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/dog_kind_view")
+	public String dogKindView(Model model) {
+		model.addAttribute("view", "dog/dogKind");
+		return "template/layout2";
+	}
+	
 }
