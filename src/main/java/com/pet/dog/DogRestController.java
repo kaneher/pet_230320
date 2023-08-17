@@ -26,7 +26,7 @@ public class DogRestController {
 			HttpSession session,
 			@RequestParam("dogName") String dogName,
 			@RequestParam("dogAge") int dogAge,
-			@RequestParam("dogKindId") int dogKindId,
+			@RequestParam("dogKind") String dogKind,
 			@RequestParam("dogWeight") int dogWeight,
 			@RequestParam(value = "file", required = false) MultipartFile file
 			) {
@@ -35,7 +35,7 @@ public class DogRestController {
 		int userId = (int)session.getAttribute("userId");
 		
 		// DB insert
-		Integer dogId = dogBO.addDog(userId, dogName, dogAge, dogKindId, dogWeight, file);
+		Integer dogId = dogBO.addDog(userId, dogName, dogAge, dogKind, dogWeight, file);
 		
 		Map<String, Object> result = new HashMap<>();
 		if (dogId != null) {
