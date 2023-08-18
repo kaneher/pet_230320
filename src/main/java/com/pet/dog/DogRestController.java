@@ -21,6 +21,16 @@ public class DogRestController {
 	@Autowired
 	private DogBO dogBO;
 	
+	/**
+	 * 반려견 정보 추가 API
+	 * @param session
+	 * @param dogName
+	 * @param dogAge
+	 * @param dogKind
+	 * @param dogWeight
+	 * @param file
+	 * @return
+	 */
 	@PostMapping("/add_dog")
 	public Map<String, Object> addDog(
 			HttpSession session,
@@ -33,9 +43,10 @@ public class DogRestController {
 		
 		// 세션에서 userId 받아오기
 		int userId = (int)session.getAttribute("userId");
+		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		// DB insert
-		Integer dogId = dogBO.addDog(userId, dogName, dogAge, dogKind, dogWeight, file);
+		Integer dogId = dogBO.addDog(userId, userLoginId, dogName, dogAge, dogKind, dogWeight, file);
 		
 		Map<String, Object> result = new HashMap<>();
 		if (dogId != null) {

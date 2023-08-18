@@ -1,10 +1,11 @@
 @charset "UTF-8";
 header {height:100px;}
-.contents {height:700px;}
+.contents {min-height:700px;}
 footer {height:100px;}
 
 .sign-up-box {width:600px;}
 .add-dog-box {width:600px;}
+.user-dog-box {min-height:500px;}
 .sign-up-table th {background-color:#D8D8D8;}
 .add-dog-table th {background-color:#D8D8D8;}
 .subject{color:black;}

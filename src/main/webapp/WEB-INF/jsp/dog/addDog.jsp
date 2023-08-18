@@ -3,7 +3,6 @@
 <div class="d-flex justify-content-center">
 	<div class="add-dog-box">
 		<h1 class="mb-4">반려견 추가</h1>
-		<form id="addDogForm" method="post" action="/dog/add_dog">
 			<table class="add-dog-table table table-bordered">
 				<tr>
 					<th>반려견 이름</th>
@@ -27,21 +26,21 @@
 				</tr>
 			</table>
 			
-			<button type="submit" id="addDogBtn" class="btn btn-primary float-right">반려견 정보 추가</button>
-		</form>
+			<button type="button" id="addDogBtn" class="btn btn-primary float-right">반려견 정보 추가</button>
 	</div>
 </div>
 
 <script>
 	$(document).ready(function() {
-		$('#addDogForm').on('submit', function(e) {
-			e.preventDefault();
+		$('#addDogBtn').on('click', function(e) {
+			// e.preventDefault();
 			
 			// validation
 			let dogName = $('input[name=dogName]').val().trim();
 			let dogAge = $("#dogAge").val().trim();
 			let dogKind = $('#dogKind').val().trim();
 			let dogWeight = $('#dogWeight').val().trim();
+			let file = $('#file').val().trim();
 			
 			if (!dogName) {
 				alert("반려견 이름을 입력하세요");
@@ -60,10 +59,11 @@
 				return false;
 			}
 			if (file != "") {
+				alert(file);
 				// C:\fakepath\MI 파이썬기본 방특 10.pdf
 				// 확장자만 뽑은 후 소문자로 변경한다.
 				let ext = file.split(".").pop().toLowerCase();
-				//alert(ext);
+				// alert(ext);
 				
 				if ($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1) {
 					alert("이미지 파일만 업로드 할 수 있습니다.");
