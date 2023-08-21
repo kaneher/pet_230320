@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pet.dog.dao.DogMapper">
+	<select id="selectDogByDogIdAndUserId" parameterType="map" resultType="com.pet.dog.domain.Dog">
+		SELECT
+			`id`
+			,`userId`
+			,`dogName`
+			,`dogAge`
+			,`dogKindId`
+			,`dogWeight`
+			,`dogProfileImagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`userdog`
+		WHERE
+			#{userId} = `userId`
+			AND
+			#{dogId} = `id`
+	</select>
+	
+	<update id="updateDogByDogIdAndUserId" parameterType="map" resultType="int">
+		UPDATE `userdog`
+			SET
+				`dogAge` = #{dogAge}
+				, `dogWeight` = #{dogWeight}
+				<if test="dogProfileImagePath != null">
+				, `dogProfileImagePath` = #{dogProfileImagePath}
+				</if>
+				, `updatedAt` = NOW()
+			WHERE
+				`id` = #{dogId}
+			AND
+				`userId` = #{userId}
+	</update>
+</mapper>

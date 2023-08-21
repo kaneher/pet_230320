@@ -54,4 +54,14 @@ public class DogController {
 		return "template/layout2";
 	}
 	
+	/**
+	 * 반려견 정보 수정 화면
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/update_dog_view")
+	public String updateDogView(Model model) {
+		model.addAttribute("view", "dog/updateDog");
+		return "template/layout2";
+	}
 }

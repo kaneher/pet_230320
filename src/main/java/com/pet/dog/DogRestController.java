@@ -48,6 +48,7 @@ public class DogRestController {
 		// DB insert
 		Integer dogId = dogBO.addDog(userId, userLoginId, dogName, dogAge, dogKind, dogWeight, file);
 		
+		// 응답
 		Map<String, Object> result = new HashMap<>();
 		if (dogId != null) {
 			result.put("code", 1);
@@ -59,4 +60,32 @@ public class DogRestController {
 		return result;
 	}
 	
+	@PostMapping("/update_dog")
+	public Map<String, Object> updateDog(
+			HttpSession session,
+			@RequestParam("dogId") int dogId,
+			@RequestParam("dogAge") int dogAge,
+			@RequestParam("dogWeight") int dogWeight,
+			@RequestParam(value = "file", required = false) MultipartFile file
+			) {
+		
+		// 세션에서 userId, userLoginId 받아오기
+		int userId = (int)session.getAttribute("userId");
+		String userLoginId = (String)session.getAttribute("userLoginId");
+		
+		// DB update
+		int updateSuccess = 0;
+		updateSuccess = dogBO.updateDog(userId, userLoginId, dogId, dogAge, dogWeight, file);
+		
+		// 응답
+		Map<String, Object> result = new HashMap<>();
+		if (updateSuccess != 0) {
+			result.put("code", 1);
+			result.put("result", "성공");
+		} else {
+			result.put("code", 500);
+			result.put("errorMessage", "강아지 정보를 수정 하는데 실패했습니다.");
+		}
+		return result;
+	}
 }

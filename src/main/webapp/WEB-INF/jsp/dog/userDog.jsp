@@ -7,15 +7,23 @@
 		<img src="${dogEntity.dogProfileImagePath}" alt="반려견 사진" width="951" height="500">
 	</div>
 	<div class="bg-secondary w-50">
-		<table>
-			<thead>
-				<tr>
-					<th></th>
-				</tr>
-			</thead>
+		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<td></td>
+					<th>반려견 이름</th>
+					<td>${dogEntity.dogName}</td>
+				</tr>
+				<tr>
+					<th>반려견 나이</th>
+					<td>${dogEntity.dogAge}</td>
+				</tr>
+				<tr>
+					<th>반려견 견종</th>
+					<td><a href="" alt="">${dogEntity.dogKindId}</a></td>
+				</tr>
+				<tr>
+					<th>반려견 체중</th>
+					<td>${dogEntity.dogWeight}</td>
 				</tr>
 			</tbody>
 		</table>
