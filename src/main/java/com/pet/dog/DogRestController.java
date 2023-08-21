@@ -60,6 +60,15 @@ public class DogRestController {
 		return result;
 	}
 	
+	/**
+	 * 반려견 정보 수정 API
+	 * @param session
+	 * @param dogId
+	 * @param dogAge
+	 * @param dogWeight
+	 * @param file
+	 * @return
+	 */
 	@PostMapping("/update_dog")
 	public Map<String, Object> updateDog(
 			HttpSession session,
@@ -74,18 +83,12 @@ public class DogRestController {
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		// DB update
-		int updateSuccess = 0;
-		updateSuccess = dogBO.updateDog(userId, userLoginId, dogId, dogAge, dogWeight, file);
+		dogBO.updateDog(userId, userLoginId, dogId, dogAge, dogWeight, file);
 		
 		// 응답
 		Map<String, Object> result = new HashMap<>();
-		if (updateSuccess != 0) {
-			result.put("code", 1);
-			result.put("result", "성공");
-		} else {
-			result.put("code", 500);
-			result.put("errorMessage", "강아지 정보를 수정 하는데 실패했습니다.");
-		}
+		result.put("code", 1);
+		result.put("result", "성공");
 		return result;
 	}
 }

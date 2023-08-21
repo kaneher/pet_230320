@@ -17,6 +17,6 @@
     <a class="nav-link" href="/post/post_list_view">커뮤니티</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">내 정보</a>
+    <a class="nav-link" href="/user/information_view">내 정보</a>
   </li>
 </ul>

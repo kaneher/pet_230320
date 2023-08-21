@@ -74,7 +74,7 @@ public class DogBO {
 	
 	// input : dog 관련 requestParameter
 	// output : int(성공 결과 출력)
-	public Integer updateDog(int userId, String userLoginId, int dogId, int dogAge, int dogWeight, MultipartFile file) {
+	public void updateDog(int userId, String userLoginId, int dogId, int dogAge, int dogWeight, MultipartFile file) {
 		
 		Dog dog = dogMapper.selectDogByDogIdAndUserId(dogId, userId);
 		if (dog == null) {
@@ -90,8 +90,6 @@ public class DogBO {
 			}
 		}
 		
-		int updateSuccess = dogMapper.updateDogByDogIdAndUserId(dogId, userId, dogAge, dogWeight, imagePath);
-		
-		return updateSuccess;
+		dogMapper.updateDogByDogIdAndUserId(dogId, userId, dogAge, dogWeight, imagePath);
 	}
 }

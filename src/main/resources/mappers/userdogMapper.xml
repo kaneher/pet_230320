@@ -21,7 +21,7 @@
 			#{dogId} = `id`
 	</select>
 	
-	<update id="updateDogByDogIdAndUserId" parameterType="map" resultType="int">
+	<update id="updateDogByDogIdAndUserId" parameterType="map">
 		UPDATE `userdog`
 			SET
 				`dogAge` = #{dogAge}

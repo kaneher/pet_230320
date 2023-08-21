@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pet.dog.bo.DogBO;
@@ -59,8 +60,12 @@ public class DogController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/update_dog_view")
-	public String updateDogView(Model model) {
+	DogEntity dogEntity = new DogEntity();
+	int dogId = dogEntity.getId();
+	@GetMapping("/update_dog_view{dogId}")
+	public String updateDogView(
+			@PathVariable("dogId") int dogId
+			, Model model) {
 		model.addAttribute("view", "dog/updateDog");
 		return "template/layout2";
 	}

@@ -41,7 +41,6 @@
 			let dogKind = $('#dogKind').val().trim();
 			let dogWeight = $('#dogWeight').val().trim();
 			let file = $('#file').val().trim();
-			
 			if (!dogName) {
 				alert("반려견 이름을 입력하세요");
 				return false;
@@ -102,7 +101,7 @@
 					}
 				}
 				, error:function(request, status, error) {
-					alert("글을 저장하는데 실패했습니다.");
+					alert("반려견 정보를 추가하는데 실패했습니다.");
 				}
 			});
 			

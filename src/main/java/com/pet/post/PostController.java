@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.pet.post.bo.PostBO;
 import com.pet.post.domain.Post;
@@ -26,7 +25,8 @@ public class PostController {
 	public String postListView(
 			@RequestParam(value = "prevId", required = false) Integer prevIdParam,
 			@RequestParam(value = "nextId", required = false) Integer nextIdParam,
-			HttpSession session, Model model) {
+			HttpSession session,
+			Model model) {
 		// 로그인 여부 조회
 		Integer userId = (Integer)session.getAttribute("userId");
 		if (userId == null) {

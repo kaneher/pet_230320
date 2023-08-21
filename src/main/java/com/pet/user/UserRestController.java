@@ -31,7 +31,8 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping("/is_duplicated_id")
-	public Map<String, Object> isDuplicatedId(@RequestParam("loginId") String loginId) {
+	public Map<String, Object> isDuplicatedId(
+			@RequestParam("loginId") String loginId) {
 
 		Map<String, Object> result = new HashMap<>();
 		result.put("isDuplicatedId", false);
@@ -107,7 +108,6 @@ public class UserRestController {
 			session.setAttribute("userId", userEntity.getId());
 			session.setAttribute("userLoginId", userEntity.getLoginId());
 			session.setAttribute("userName", userEntity.getName());
-			
 			result.put("code", 1);
 			result.put("result", "성공");
 		} else {
@@ -118,4 +118,6 @@ public class UserRestController {
 		
 		return result;
 	}
+	
+	
 }
