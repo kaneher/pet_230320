@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pet.dog.bo.DogBO;
 import com.pet.dog.entity.DogEntity;
@@ -55,16 +55,18 @@ public class DogController {
 		return "template/layout2";
 	}
 	
+	
 	/**
 	 * 반려견 정보 수정 화면
+	 * @param dogId
 	 * @param model
 	 * @return
 	 */
 	DogEntity dogEntity = new DogEntity();
 	int dogId = dogEntity.getId();
-	@GetMapping("/update_dog_view{dogId}")
+	@GetMapping("/update_dog_view")
 	public String updateDogView(
-			@PathVariable("dogId") int dogId
+			@RequestParam("dogId") int dogId
 			, Model model) {
 		model.addAttribute("view", "dog/updateDog");
 		return "template/layout2";

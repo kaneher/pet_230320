@@ -80,6 +80,11 @@ public class UserController {
 		return "template/layout2";
 	}
 	
+	/**
+	 * 내 정보 수정 화면
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/update_user_information_view")
 	public String updateUserInformationView(Model model) {
 		

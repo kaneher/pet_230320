@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.pet.common.SHA256;
 import com.pet.user.bo.UserBO;
@@ -54,20 +55,21 @@ public class UserRestController {
 	 * @param password
 	 * @param name
 	 * @param email
+	 * @param file
 	 * @return
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password, @RequestParam("name") String name,
-			@RequestParam("email") String email) throws NoSuchAlgorithmException {
+			@RequestParam("email") String email, @RequestParam("profileImagePath") MultipartFile file) throws NoSuchAlgorithmException {
 
 		// 비밀번호 해싱 - SHA 256
 		SHA256 sha256 = new SHA256();
 		String hashedPassword = sha256.encrypt(password);
 
 		// DB insert
-		Integer userId = userBO.addUser(loginId, hashedPassword, name, email);
+		Integer userId = userBO.addUser(loginId, hashedPassword, name, email, file);
 
 		Map<String, Object> result = new HashMap<>();
 		if (userId != null) {
@@ -119,5 +121,37 @@ public class UserRestController {
 		return result;
 	}
 	
-	
-}
+	/**
+	 * 내 정보 수정 API
+	 * @param password
+	 * @param email
+	 * @param file
+	 * @param session
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 */
+	@PostMapping("/update_user_information")
+	public Map<String, Object> updateUserInformation(
+			@RequestParam("password") String password,
+			@RequestParam("email") String email,
+			@RequestParam("file") MultipartFile file,
+			HttpSession session) throws NoSuchAlgorithmException {
+		
+		// userId, userLoginId 받아오기
+		int userId = (int)session.getAttribute("userId");
+		String userLoginId = (String)session.getAttribute("userLoginId");
+		
+		// password hashing
+		SHA256 sha256 = new SHA256();
+		String hashedPassword = sha256.encrypt(password);
+		
+		// DB update
+		userBO.updateUserInformation(userId, userLoginId, hashedPassword, email, file);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+		}
+	}
+

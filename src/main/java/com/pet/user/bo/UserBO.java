@@ -2,7 +2,10 @@ package com.pet.user.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.pet.common.FileManagerService;
+import com.pet.user.dao.UserMapper;
 import com.pet.user.dao.UserRepository;
 import com.pet.user.entity.UserEntity;
 
@@ -11,6 +14,12 @@ public class UserBO {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserMapper userMapper;
+	
+	@Autowired
+	private FileManagerService fileManager;
 
 	// input: loginId
 	// output: UserEntity(null or 채워져 있거나)
@@ -20,7 +29,12 @@ public class UserBO {
 
 	// input: user 관련 파라미터들
 	// output: UserEntity => id pk 추출
-	public Integer addUser(String loginId, String password, String name, String email) {
+	public Integer addUser(String loginId, String password, String name, String email, MultipartFile file) {
+		String imagePath = null;
+		if (file != null) {
+			imagePath = fileManager.saveFile(loginId, file);
+		}
+		
 		// save
 		UserEntity userEntity = userRepository.save(
 								UserEntity.builder()
@@ -28,6 +42,7 @@ public class UserBO {
 								.password(password)
 								.name(name)
 								.email(email)
+								.profileImagePath(imagePath)
 								.build()
 							);
 		return userEntity == null ? null : userEntity.getId(); // pk만 리턴
@@ -44,5 +59,18 @@ public class UserBO {
 	public UserEntity getUserEntityByUserId(int userId) {
 		
 		return userRepository.findById(userId);
+	}
+	
+	// input : RequestParameter
+	// output : X
+	public void updateUserInformation(int userId, String userLoginId, String hashedPassword, String email, MultipartFile file) {
+		
+		// imagePath 처리
+		String imagePath = null;
+		if (file != null) {
+			imagePath = fileManager.saveFile(userLoginId, file);
+		}
+		
+		userMapper.updateUserInformation(userId, userLoginId, hashedPassword, email, imagePath);
 	}
 }

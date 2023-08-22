@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<th>반려견 견종</th>
-					<td><a href="/dogKind/" alt="">${dogEntity.dogKindId}</a></td>
+					<td><a href="/dogKind/">${dogEntity.dogKindId}</a></td>
 				</tr>
 				<tr>
 					<th>반려견 체중</th>
@@ -27,8 +27,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<div>
-			<a href="/dog/update_dog_view${dogEntity.id}">반려견 정보 수정</a>
+		<div class="d-flex justify-content-center">
+			<a href="/dog/update_dog_view?dogId=${dogEntity.id}" class="btn btn-success">반려견 정보 수정</a>
 		</div>
 	</div>
 </div>
