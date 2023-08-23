@@ -29,8 +29,20 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		Integer userId = (Integer)session.getAttribute("userId");
 		
+		// 비로그인 && /dog 온 경우 => 로그인 페이지로 이동, 컨트롤러 수행 방지
+		if (userId == null && uri.startsWith("/dog")) {
+			response.sendRedirect("/user/sign_in_view");
+			return false; // 컨트롤러 수행 안함
+		}
+		
+		// 비로그인 && /dogKind 온 경우 => 로그인 페이지로 이동, 컨트롤러 수행 방지
+		if (userId == null && uri.startsWith("/dogKind")) {
+			response.sendRedirect("/user/sign_in_view");
+			return false; // 컨트롤러 수행 안함
+		}
+		
 		// 비로그인 && /post 온 경우 => 로그인 페이지로 이동, 컨트롤러 수행 방지
-		if (userId == null && uri.startsWith("/post") && uri.startsWith("/dog")) {
+		if (userId == null && uri.startsWith("/post")) {
 			response.sendRedirect("/user/sign_in_view");
 			return false; // 컨트롤러 수행 안함
 		}

@@ -1,5 +1,7 @@
 package com.pet.dogKind.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,10 @@ public class DogKindBO {
 		
 	public DogKindEntity getDogKind(String dogKind) {
 		return dogKindRepository.findByDogKind(dogKind);
+	}
+	
+	public List<DogKindEntity> getDogKindList() {
+		return dogKindRepository.findAll();
 	}
 
 }
