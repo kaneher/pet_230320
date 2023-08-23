@@ -21,5 +21,9 @@ public class DogKindBO {
 	public List<DogKindEntity> getDogKindList() {
 		return dogKindRepository.findAll();
 	}
+	
+	public DogKindEntity getDogKindById(int dogKindId) {
+		return dogKindRepository.findById(dogKindId);
+	}
 
 }

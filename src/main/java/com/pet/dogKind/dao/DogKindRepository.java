@@ -13,4 +13,6 @@ public interface DogKindRepository extends JpaRepository<DogKindEntity, Integer>
 	public DogKindEntity findByDogKind(String dogKind);
 	
 	public List<DogKindEntity> findAll();
+	
+	public DogKindEntity findById(int dogKindId);
 }

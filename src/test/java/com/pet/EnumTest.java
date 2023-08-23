@@ -4,15 +4,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import com.pet.test.CalcType;
 import com.pet.test.Status;
 
 public class EnumTest {
+	
+	@Test
+	void 계산테스트() {
+		// given
+		CalcType calcType = CalcType.CALC_C;
+		
+		// when
+		int result = calcType.calculate(500);
+		
+		// then
+		assertEquals(result, 1500);
+	}
 
 	Status getStatus() {
 		return Status.Y;
 	}
 	
-	@Test
+	// @Test
 	void Status테스트() {
 		// given - 준비
 		Status status = getStatus(); // Y

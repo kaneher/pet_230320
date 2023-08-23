@@ -5,7 +5,7 @@
     <a class="nav-link" href="/dog/user_dog_view">내 반려견</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/dog/dog_kind_view">견종 정보</a>
+    <a class="nav-link" href="/dogKind/list_view">견종 정보</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">주변 동물병원</a>

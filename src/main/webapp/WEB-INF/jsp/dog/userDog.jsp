@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<th>반려견 견종</th>
-					<td><a href="/dogKind/">${dogEntity.dogKindId}</a></td>
+					<td><a href="/dogKind/detail_view?dogKindId=${dogEntity.dogKindId}">${dogKindEntity.dogKind}견종 정보 보기</a></td>
 				</tr>
 				<tr>
 					<th>반려견 체중</th>

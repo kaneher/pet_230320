@@ -37,6 +37,10 @@
 					<th>* 이메일</th>
 					<td><input type="text" id="email" name="email" class="form-control" placeholder="이메일 주소를 입력하세요."></td>
 				</tr>
+				<tr>
+					<th>* 프로필 사진</th>
+					<td><input type="file" id="file" accept=".jpg, .jpeg, .png, .gif"></td>
+				</tr>
 			</table>
 			<br>
 
@@ -94,6 +98,7 @@
 			let confirmPassword = $('#confirmPassword').val();
 			let name = $('#name').val().trim();
 			let email = $('#email').val().trim();
+			let file = $('#file').val();
 			
 			if (!loginId) {
 				alert("아이디를 입력하세요");
@@ -120,26 +125,53 @@
 				alert("아이디 중복확인을 다시 해주세요");
 				return false;
 			}
+			if (file != "") {
+				// C:\fakepath\MI 파이썬기본 방특 10.pdf
+				// 확장자만 뽑은 후 소문자로 변경한다.
+				let ext = file.split(".").pop().toLowerCase();
+				//alert(ext);
+				
+				if ($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1) {
+					alert("이미지 파일만 업로드 할 수 있습니다.");
+					$('#file').val(''); // 파일을 비운다.
+					return;
+				}
+			}
 			
 			// 서버로 보내는 방법 두가지
 			// 1) form submit을 자바스크립트로 진행 시킴 
 			//$(this)[0].submit(); // 화면 이동을 반드시 해야한다.(컨트롤러가 redirect 또는 jsp)
 			
 			// 2) AJAX  -  컨트롤러가 JSON 리턴
-			let url = $(this).attr('action');
-			console.log(url);
-			let params = $(this).serialize(); // 폼태그에 있는 name 속성-값들로 파라미터 구성
-			console.log(params);
+			let formData = new FormData();
+			formData.append("loginId", loginId); // key는 form태그의 name 속성과 같고 RequestParam명이 된다.
+			formData.append("password", password);
+			formData.append("name", name);
+			formData.append("email", email);
+			formData.append("file", $('#file')[0].files[0]);
 			
-			$.post(url, params)   // request
-			.done(function(data) {
+			$.ajax({
+				// request
+				type:"post"
+				, url:"/user/sign_up"
+				, data:formData
+				, enctype:"multipart/form-data" // 파일 업로드를 위한 필수 설정
+				, processData:false  // 파일 업로드를 위한 필수 설정
+				, contentType:false  // 파일 업로드를 위한 필수 설정
+				
 				// response
-				if (data.code == 1) {
-					alert("가입을 환영합니다! 로그인을 해주세요.");
-					location.href = "/user/sign_in_view"; // 로그인 화면으로 이동
-				} else {
-					// 로직 실패
-					alert(data.errorMessage);
+				, success:function(data) {
+					if (data.code == 1) {
+						// 성공
+						alert("가입을 환영합니다! 로그인 해주세요");
+						location.href = "/user/sign_in_view";
+					} else {
+						// 로직상 실패
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(request, status, error) {
+					alert("회원가입에 실패했습니다.");
 				}
 			});
 		});

@@ -60,9 +60,12 @@ public class UserRestController {
 	 * @throws NoSuchAlgorithmException
 	 */
 	@PostMapping("/sign_up")
-	public Map<String, Object> signUp(@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password, @RequestParam("name") String name,
-			@RequestParam("email") String email, @RequestParam("profileImagePath") MultipartFile file) throws NoSuchAlgorithmException {
+	public Map<String, Object> signUp(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			@RequestParam("name") String name,
+			@RequestParam("email") String email,
+			@RequestParam(value = "file", required = false) MultipartFile file) throws NoSuchAlgorithmException {
 
 		// 비밀번호 해싱 - SHA 256
 		SHA256 sha256 = new SHA256();

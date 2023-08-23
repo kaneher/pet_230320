@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pet.dog.bo.DogBO;
 import com.pet.dog.entity.DogEntity;
+import com.pet.dogKind.entity.DogKindEntity;
 
 @Controller
 @RequestMapping("/dog")
@@ -20,7 +21,7 @@ public class DogController {
 	
 	@Autowired
 	private DogBO dogBO;
-
+	
 	/**
 	 * 반려견 정보 화면
 	 * @param session
@@ -30,16 +31,19 @@ public class DogController {
 	@GetMapping("/user_dog_view")
 	public String userDog(
 			HttpSession session,
-			Model model) {
+			Model model
+			) {
 		
 		// 세션에서 userId 받아오기
 		int userId = (int)session.getAttribute("userId");
 		
 		// DB select
 		List<DogEntity> dogEntityList = dogBO.getUserDog(userId);
+		DogKindEntity dogKindEntity = new DogKindEntity();
 		
 		// 출력
 		model.addAttribute("dogEntityList", dogEntityList);
+		model.addAttribute("dogKindEntity", dogKindEntity);
 		model.addAttribute("view", "dog/userDog");
 		return "template/layout2";
 	}
@@ -55,19 +59,18 @@ public class DogController {
 		return "template/layout2";
 	}
 	
-	
 	/**
 	 * 반려견 정보 수정 화면
-	 * @param dogId
 	 * @param model
 	 * @return
 	 */
-	DogEntity dogEntity = new DogEntity();
-	int dogId = dogEntity.getId();
 	@GetMapping("/update_dog_view")
-	public String updateDogView(
-			@RequestParam("dogId") int dogId
-			, Model model) {
+	public String updateDogView(Model model,
+			@RequestParam("dogId") int dogId) {
+		
+		DogEntity dogEntity = new DogEntity();
+		
+		model.addAttribute("dogEntity", dogEntity);
 		model.addAttribute("view", "dog/updateDog");
 		return "template/layout2";
 	}

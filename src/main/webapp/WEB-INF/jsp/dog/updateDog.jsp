@@ -27,6 +27,12 @@
 		$('#updateDogBtn').on('click', function() {
 			
 			// validation
+			// url에서 dogId 뽑아내기(URL 파라미터 뽑아내기)
+			let url = document.location.href;
+			let query = window.location.search;
+			let param = new URLSearchParams(query);
+			let dogId = param.get('dogId');
+			
 			let dogAge = $("#dogAge").val().trim();
 			let dogWeight = $('#dogWeight').val().trim();
 			let file = $('#file').val().trim();
@@ -56,6 +62,7 @@
 			// AJAX 통신
 			// 이미지를 업로드 할 때는 반드시 form 태그가 있어야 한다.
 			let formData = new FormData();
+			formData.append("dogId", dogId);
 			formData.append("dogAge", dogAge);
 			formData.append("dogWeight", dogWeight);
 			formData.append("file", $('#file')[0].files[0]);
@@ -81,7 +88,7 @@
 					}
 				}
 				, error:function(request, status, error) {
-					alert("반려견 정보를 수정하는데 실패했습니다.");
+					alert("!!!!!!!!반려견 정보를 수정하는데 실패했습니다.!!!!!!!!!!");
 				}
 			});
 			
