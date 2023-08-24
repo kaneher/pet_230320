@@ -19,7 +19,7 @@
 				</tr>
 				<tr>
 					<th>반려견 견종</th>
-					<td><a href="/dogKind/detail_view?dogKindId=${dogEntity.dogKindId}">${dogKindEntity.dogKind}견종 정보 보기</a></td>
+					<td><a href="/dogKind/detail_view?dogKindId=${dogEntity.dogKindId}">${dogKindEntity.dogKind}</a> - 버튼을 누르시면 견종 정보를 볼 수 있습니다.</td>
 				</tr>
 				<tr>
 					<th>반려견 체중</th>

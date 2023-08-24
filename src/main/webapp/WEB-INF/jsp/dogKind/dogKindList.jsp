@@ -14,7 +14,7 @@
 			<tbody>
 				<tr>
 					<td>${status.count}</td>
-					<td><img src="${dogKindEntity.dogKindImagePath}" alt="견종 사진" width="200"></td>
+					<td><img src="${dogKindEntity.dogKindImagePath}" alt="견종 사진" width="150"></td>
 					<td><a href="/dogKind/detail_view?dogKindId=${dogKindEntity.id}">${dogKindEntity.dogKind}</a></td>
 				</tr>
 			</tbody>

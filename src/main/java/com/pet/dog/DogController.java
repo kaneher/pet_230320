@@ -1,5 +1,6 @@
 package com.pet.dog;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pet.dog.bo.DogBO;
 import com.pet.dog.entity.DogEntity;
+import com.pet.dogKind.bo.DogKindBO;
 import com.pet.dogKind.entity.DogKindEntity;
 
 @Controller
@@ -21,6 +23,9 @@ public class DogController {
 	
 	@Autowired
 	private DogBO dogBO;
+	
+	@Autowired
+	private DogKindBO dogKindBO;
 	
 	/**
 	 * 반려견 정보 화면
@@ -39,7 +44,15 @@ public class DogController {
 		
 		// DB select
 		List<DogEntity> dogEntityList = dogBO.getUserDog(userId);
-		DogKindEntity dogKindEntity = new DogKindEntity();
+		
+		// dogKindEntity에서 String dogKind 뽑아오기
+		int dogKindId = 0;
+		Iterator<DogEntity> iter = dogEntityList.iterator();
+		while (iter.hasNext()) {
+			DogEntity dogEntity = iter.next();
+			dogKindId = dogEntity.getDogKindId();
+		}
+		DogKindEntity dogKindEntity = dogKindBO.getDogKindById(dogKindId);
 		
 		// 출력
 		model.addAttribute("dogEntityList", dogEntityList);

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -97,7 +98,8 @@ public class UserRestController {
 	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			HttpServletRequest request) throws NoSuchAlgorithmException {
+			HttpServletRequest request,
+			Model model) throws NoSuchAlgorithmException {
 		
 		// password hashing
 		SHA256 sha256 = new SHA256();
@@ -113,6 +115,7 @@ public class UserRestController {
 			session.setAttribute("userId", userEntity.getId());
 			session.setAttribute("userLoginId", userEntity.getLoginId());
 			session.setAttribute("userName", userEntity.getName());
+			session.setAttribute("profileImagePath", userEntity.getProfileImagePath());
 			result.put("code", 1);
 			result.put("result", "성공");
 		} else {
