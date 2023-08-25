@@ -18,4 +18,8 @@ public interface DogMapper {
 			@Param("dogAge") int dogAge,
 			@Param("dogWeight") int dogWeight,
 			@Param("dogProfileImagePath") String dogProfileImagePath);
+	
+	public void deleteDogByDogIdAndUserId(
+			@Param("dogId") int dogId, 
+			@Param("userId") int userId);
 }

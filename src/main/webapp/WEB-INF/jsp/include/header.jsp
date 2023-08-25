@@ -23,7 +23,7 @@
 	<div>
 		<%-- 로그인이 된 경우에만 로그인 정보와 로그아웃 노출 --%>
 		<c:if test="${not empty userName}">
-			<img src="${profileImagePath}" width="70" class="mr-2">
+			<img src="${profileImagePath}" width="70" class="mr-3">
 			<span class="mr-3">${userName} 님 환영합니다!</span>
 			<a href="/user/sign_out">로그아웃</a>
 		</c:if>

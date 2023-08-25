@@ -35,4 +35,14 @@
 			AND
 				`userId` = #{userId}
 	</update>
+	
+	<delete id="deleteDogByDogIdAndUserId" parameterType="map">
+		DELETE
+		FROM
+			`userdog`
+		WHERE
+			`id` = #{dogId}
+		AND
+			`userId` = #{userId}
+	</delete>
 </mapper>

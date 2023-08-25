@@ -92,4 +92,19 @@ public class DogBO {
 		
 		dogMapper.updateDogByDogIdAndUserId(dogId, userId, dogAge, dogWeight, imagePath);
 	}
+	
+	public void deleteDogByDogIdAndUserId(int dogId, int userId) {
+		Dog dog = dogMapper.selectDogByDogIdAndUserId(dogId, userId);
+		
+		if (dog == null) {
+			logger.error("##[글 삭제] dog is null. dogId:{}, userId:{}", dogId, userId);
+			return;
+		}
+		
+		if (dog.getDogProfileImagePath() != null) {
+			fileManager.deleteFile(dog.getDogProfileImagePath());
+		}
+		
+		dogMapper.deleteDogByDogIdAndUserId(dogId, userId);
+	}
 }

@@ -28,7 +28,8 @@
 			</tbody>
 		</table>
 		<div class="d-flex justify-content-center">
-			<a href="/dog/update_dog_view?dogId=${dogEntity.id}" class="btn btn-success">반려견 정보 수정</a>
+			<a href="/dog/update_dog_view?dogId=${dogEntity.id}" class="btn btn-success mr-5">반려견 정보 수정</a>
+			<button type="button" class="deleteBtn btn btn-danger ml-5" data-dog-id="${dogEntity.id}">반려견 정보 삭제</button>
 		</div>
 	</div>
 </div>
@@ -37,3 +38,30 @@
 <div class="d-flex justify-content-center">
 	<a href="/dog/add_dog_view"><button type="button" id="toAddDogBtn" class="btn btn-info">반려견 추가</button></a>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$(".deleteBtn").on('click', function() {
+			
+			let dogId = $(this).data('dog-id');
+			
+			$.ajax({
+				type:"delete"
+				, url:"/dog/delete_dog"
+				, data:{"dogId":dogId}
+				, success:function(data) {
+					if (data.code == 1) {
+						alert("반려견 정보가 삭제되었습니다.");
+						location.href="/dog/user_dog_view";
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				
+				, error:function(request, status, error) {
+					alert("반려견 정보를 삭제하는 데 실패하였습니다.");
+				}
+			});
+		});
+	});
+</script>

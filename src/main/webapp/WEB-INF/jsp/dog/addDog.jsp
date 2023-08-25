@@ -41,6 +41,7 @@
 			let dogKind = $('#dogKind').val().trim();
 			let dogWeight = $('#dogWeight').val().trim();
 			let file = $('#file').val().trim();
+			
 			if (!dogName) {
 				alert("반려견 이름을 입력하세요");
 				return false;

@@ -5,11 +5,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.pet.test.CalcType;
+import com.pet.test.PayType;
 import com.pet.test.Status;
 
 public class EnumTest {
 	
 	@Test
+	void pay테스트1() {
+		// given
+		String payMethod = "KAKAO";
+		
+		// when
+		// 결제 수단(예:카카오페이)에 대한 결제 종류(예:현금 또는 카드)가 무엇인가?
+		PayType payType = PayType.findByPayMethod(payMethod);
+		
+		// then
+		assertEquals(PayType.CARD, payType);
+	}
+	
+	// @Test
 	void 계산테스트() {
 		// given
 		CalcType calcType = CalcType.CALC_C;
