@@ -157,10 +157,6 @@ public class UserRestController {
 		SHA256 sha256 = new SHA256();
 		String hashedPassword = sha256.encrypt(password);
 		
-		// 만일 모든 칸이 비어있으면 수행하지 않을 것
-		// 칸이 비어있으면 비어있는 칸의 값은 이미 존재하는 데이터로 채울 것
-		
-		
 		// DB update
 		userBO.updateUserInformation(userId, userLoginId, hashedPassword, email, address, phoneNumber, file);
 		

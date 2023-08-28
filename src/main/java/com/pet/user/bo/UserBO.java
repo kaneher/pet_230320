@@ -67,6 +67,23 @@ public class UserBO {
 	// output : X
 	public void updateUserInformation(int userId, String userLoginId, String hashedPassword, String email, String address, String phoneNumber, MultipartFile file) {
 		
+		UserEntity userEntity = new UserEntity();
+		userEntity = userRepository.findById(userId);
+		
+		// 만일 모든 칸이 비어있으면 수행하지 않을 것
+		// 칸이 비어있으면 비어있는 칸의 값은 이미 존재하는 데이터로 채울 것
+		if (email.equals(null)) {
+			email = userEntity.getEmail();
+		}
+		
+		if (address.equals(null)) {
+			address = userEntity.getAddress();
+		}
+		
+		if (phoneNumber.equals(null)) {
+			phoneNumber = userEntity.getPhoneNumber();
+		}
+		
 		// imagePath 처리
 		String imagePath = null;
 		if (file != null) {

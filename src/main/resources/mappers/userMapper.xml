@@ -5,7 +5,7 @@
 	<update id="updateUserInformation" parameterType="map">
 		UPDATE `user`
 		SET
-			<!-- password가 있을 때만 수정한다. -->
+			<!-- hashedPassword가 있을 때만 수정한다. -->
 			<if test="hashedPassword != null">
 			`password` = #{hashedPassword}
 			</if>
