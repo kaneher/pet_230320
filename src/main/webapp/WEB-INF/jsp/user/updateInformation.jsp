@@ -12,12 +12,20 @@
 				<td><input type="text" id="email" name="email" class="form-control" placeholder="변경할 이메일을 입력해 주세요"></td>
 			</tr>
 			<tr>
+				<th>주소 변경</th>
+				<td><input type="text" id="address" name="address" class="form-control" placeholder="변경할 주소를 입력해 주세요"></td>
+			</tr>
+			<tr>
+				<th>전화번호 변경</th>
+				<td><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="변경할 전화번호를 입력해 주세요"></td>
+			</tr>
+			<tr>
 				<th>프로필 사진 변경</th>
 				<td><input type="file" id="file" accept=".jpg, .jpeg, .png, .gif"></td>
 			</tr>
 		</tbody>
 	</table>
-	<div>
+	<div class="d-flex justify-content-center">
 		<button type="button" id="saveBtn" class="btn btn-info">정보 수정 완료</button>
 	</div>
 </div>
@@ -29,17 +37,11 @@
 			// 값 가져오기
 			let password = $('#password').val().trim();
 			let email = $('#email').val().trim();
+			let address = $('#address').val().trim();
+			let phoneNumber = $('#phoneNumber').val().trim();
 			let file = $('#file').val().trim();
 			
 			// validation check
-			if (!password) {
-				alert("변경할 비밀번호를 입력하세요.");
-				return;
-			}
-			if (!email) {
-				alert("변경할 이메일을 입력하세요.");
-				return;
-			}
 			if (file != "") {
 				let ext = file.split(".").pop().toLowerCase();
 				//alert(ext);
@@ -55,6 +57,8 @@
 			let formData = new FormData();
 			formData.append("password", password); // key는 form태그의 name 속성과 같고 RequestParam명이 된다.
 			formData.append("email", email);
+			formData.append("address", address);
+			formData.append("phoneNumber", phoneNumber);
 			formData.append("file", $('#file')[0].files[0]);
 			
 			$.ajax({

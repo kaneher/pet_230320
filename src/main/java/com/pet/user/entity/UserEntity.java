@@ -38,6 +38,11 @@ public class UserEntity {
 	
 	private String email;
 	
+	private String address;
+	
+	@Column(name = "phoneNumber")
+	private String phoneNumber;
+	
 	@Column(name = "profileImagePath")
 	private String profileImagePath;
 	

@@ -12,6 +12,14 @@
 				<th>이메일</th>
 				<td>${userEntity.email}</td>
 			</tr>
+			<tr>
+				<th>주소</th>
+				<td>${userEntity.address}</td>
+			</tr>
+			<tr>
+				<th>전화번호</th>
+				<td>${userEntity.phoneNumber}</td>
+			</tr>
 			<c:if test="${not empty userEntity.profileImagePath}">
 				<tr>
 					<th>프로필 이미지</th>

@@ -11,5 +11,7 @@ public interface UserMapper {
 			@Param("userLoginId") String userLoginId,
 			@Param("hashedPassword") String hashedPassword,
 			@Param("email") String email,
+			@Param("address") String address,
+			@Param("phoneNumber") String phoneNumber,
 			@Param("imagePath") String imagePath);
 }

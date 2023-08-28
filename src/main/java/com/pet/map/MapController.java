@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/map")
 public class MapController {
 	
-	@GetMapping("/map_view")
+	@GetMapping("/detail_view")
 	public String map(Model model) {
-		model.addAttribute("view", "map/map");
+		model.addAttribute("view", "map/mapDetail");
 		return "template/layout2";
 	}
 }

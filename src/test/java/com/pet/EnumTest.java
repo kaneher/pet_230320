@@ -5,12 +5,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.pet.test.CalcType;
+import com.pet.test.NewPayType;
+import com.pet.test.PayMethod;
 import com.pet.test.PayType;
 import com.pet.test.Status;
 
 public class EnumTest {
 	
 	@Test
+	void pay테스트2() {
+		// given
+		PayMethod payMethod = PayMethod.CREDIT;
+		
+		// when
+		NewPayType payType = NewPayType.findByPayMethod(payMethod);
+		
+		// then
+		assertEquals(NewPayType.CARD, payType);
+		assertEquals("신용카드", payMethod.getTitle());
+	}
+	
+	// @Test
 	void pay테스트1() {
 		// given
 		String payMethod = "KAKAO";

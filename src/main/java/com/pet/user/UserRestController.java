@@ -51,11 +51,13 @@ public class UserRestController {
 	}
 
 	/**
-	 * 회원가입 API
+	 * 
 	 * @param loginId
 	 * @param password
 	 * @param name
 	 * @param email
+	 * @param address
+	 * @param phoneNumber
 	 * @param file
 	 * @return
 	 * @throws NoSuchAlgorithmException
@@ -66,6 +68,8 @@ public class UserRestController {
 			@RequestParam("password") String password,
 			@RequestParam("name") String name,
 			@RequestParam("email") String email,
+			@RequestParam("address") String address,
+			@RequestParam("phoneNumber") String phoneNumber,
 			@RequestParam(value = "file", required = false) MultipartFile file) throws NoSuchAlgorithmException {
 
 		// 비밀번호 해싱 - SHA 256
@@ -73,7 +77,7 @@ public class UserRestController {
 		String hashedPassword = sha256.encrypt(password);
 
 		// DB insert
-		Integer userId = userBO.addUser(loginId, hashedPassword, name, email, file);
+		Integer userId = userBO.addUser(loginId, hashedPassword, name, email, address, phoneNumber, file);
 
 		Map<String, Object> result = new HashMap<>();
 		if (userId != null) {
@@ -138,9 +142,11 @@ public class UserRestController {
 	 */
 	@PostMapping("/update_user_information")
 	public Map<String, Object> updateUserInformation(
-			@RequestParam("password") String password,
-			@RequestParam("email") String email,
-			@RequestParam("file") MultipartFile file,
+			@RequestParam(value = "password", required = false) String password,
+			@RequestParam(value = "email", required = false) String email,
+			@RequestParam(value = "address", required = false) String address,
+			@RequestParam(value = "phoneNumber", required = false) String phoneNumber,
+			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session) throws NoSuchAlgorithmException {
 		
 		// userId, userLoginId 받아오기
@@ -151,8 +157,12 @@ public class UserRestController {
 		SHA256 sha256 = new SHA256();
 		String hashedPassword = sha256.encrypt(password);
 		
+		// 만일 모든 칸이 비어있으면 수행하지 않을 것
+		// 칸이 비어있으면 비어있는 칸의 값은 이미 존재하는 데이터로 채울 것
+		
+		
 		// DB update
-		userBO.updateUserInformation(userId, userLoginId, hashedPassword, email, file);
+		userBO.updateUserInformation(userId, userLoginId, hashedPassword, email, address, phoneNumber, file);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);

@@ -8,7 +8,7 @@
     <a class="nav-link" href="/dogKind/list_view">견종 정보</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">주변 동물병원</a>
+    <a class="nav-link" href="/map/detail_view">주변 동물병원</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">캘린더</a>

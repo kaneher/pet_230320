@@ -47,6 +47,12 @@ public class PermissionInterceptor implements HandlerInterceptor {
 			return false; // 컨트롤러 수행 안함
 		}
 		
+		// 비로그인 && /map 온 경우 => 로그인 페이지로 이동, 컨트롤러 수행 방지
+		if (userId == null && uri.startsWith("/map")) {
+			response.sendRedirect("/user/sign_in_view");
+			return false; // 컨트롤러 수행 안함
+		}
+		
 		// 로그인 && /user로 온 경우 => 글 목록 페이지로 이동, 컨트롤러 수행 방지
 		if (userId != null && uri.startsWith("/user/sign")) {
 			response.sendRedirect("/dog/user_dog_view");

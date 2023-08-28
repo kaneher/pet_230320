@@ -38,6 +38,14 @@
 					<td><input type="text" id="email" name="email" class="form-control" placeholder="이메일 주소를 입력하세요."></td>
 				</tr>
 				<tr>
+					<th>* 주소</th>
+					<td><input type="text" id="address" name="address" class="form-control" placeholder="주소를 입력하세요."></td>
+				</tr>
+				<tr>
+					<th>* 전화번호</th>
+					<td><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="전화번호를 입력하세요."></td>
+				</tr>
+				<tr>
 					<th>* 프로필 사진</th>
 					<td><input type="file" id="file" accept=".jpg, .jpeg, .png, .gif"></td>
 				</tr>
@@ -98,6 +106,8 @@
 			let confirmPassword = $('#confirmPassword').val();
 			let name = $('#name').val().trim();
 			let email = $('#email').val().trim();
+			let address = $('#address').val().trim();
+			let phoneNumber = $('#phoneNumber').val().trim();
 			let file = $('#file').val();
 			
 			if (!loginId) {
@@ -118,6 +128,14 @@
 			}
 			if (!email) {
 				alert("이메일을 입력하세요");
+				return false;
+			}
+			if (!address) {
+				alert("주소를 입력하세요");
+				return false;
+			}
+			if (!phoneNumber) {
+				alert("전화번호를 입력하세요");
 				return false;
 			}
 			// 아이디 중복확인 완료 됐는지 확인 -> idCheckOk d-none이 있으면 얼럿을 띄워야함
@@ -148,6 +166,8 @@
 			formData.append("password", password);
 			formData.append("name", name);
 			formData.append("email", email);
+			formData.append("address", address);
+			formData.append("phoneNumber", phoneNumber);
 			formData.append("file", $('#file')[0].files[0]);
 			
 			$.ajax({

@@ -29,7 +29,7 @@ public class UserBO {
 
 	// input: user 관련 파라미터들
 	// output: UserEntity => id pk 추출
-	public Integer addUser(String loginId, String password, String name, String email, MultipartFile file) {
+	public Integer addUser(String loginId, String password, String name, String email, String address, String phoneNumber, MultipartFile file) {
 		String imagePath = null;
 		if (file != null) {
 			imagePath = fileManager.saveFile(loginId, file);
@@ -42,6 +42,8 @@ public class UserBO {
 								.password(password)
 								.name(name)
 								.email(email)
+								.address(address)
+								.phoneNumber(phoneNumber)
 								.profileImagePath(imagePath)
 								.build()
 							);
@@ -63,7 +65,7 @@ public class UserBO {
 	
 	// input : RequestParameter
 	// output : X
-	public void updateUserInformation(int userId, String userLoginId, String hashedPassword, String email, MultipartFile file) {
+	public void updateUserInformation(int userId, String userLoginId, String hashedPassword, String email, String address, String phoneNumber, MultipartFile file) {
 		
 		// imagePath 처리
 		String imagePath = null;
@@ -71,6 +73,6 @@ public class UserBO {
 			imagePath = fileManager.saveFile(userLoginId, file);
 		}
 		
-		userMapper.updateUserInformation(userId, userLoginId, hashedPassword, email, imagePath);
+		userMapper.updateUserInformation(userId, userLoginId, hashedPassword, email, address, phoneNumber, imagePath);
 	}
 }

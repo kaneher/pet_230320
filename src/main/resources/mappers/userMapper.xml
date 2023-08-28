@@ -5,8 +5,22 @@
 	<update id="updateUserInformation" parameterType="map">
 		UPDATE `user`
 		SET
+			<!-- password가 있을 때만 수정한다. -->
+			<if test="hashedPassword != null">
 			`password` = #{hashedPassword}
+			</if>
+			<!-- email가 있을 때만 수정한다. -->
+			<if test="email != null">
 			,`email` = #{email}
+			</if>
+			<!-- address가 있을 때만 수정한다. -->
+			<if test="address != null">
+			, `address` = #{address}
+			</if>
+			<!-- phoneNumber가 있을 때만 수정한다. -->
+			<if test="phoneNumber != null">
+			, `phoneNumber` = #{phoneNumber}
+			</if>
 			<!-- imagePath가 있을 때만 수정한다. -->
 			<if test="imagePath != null">
 			,`profileImagePath` = #{imagePath}

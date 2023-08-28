@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:forEach items="${dogEntityList}" var="dogEntity">
-<div class="user-dog-box d-flex justify-content-center">
+<div class="container user-dog-box d-flex justify-content-center">
 	<div class="bg-info w-50">
-		<img src="${dogEntity.dogProfileImagePath}" alt="반려견 사진" width="951" height="500">
+		<img src="${dogEntity.dogProfileImagePath}" alt="반려견 사진" width="555" height="500">
 	</div>
 	<div class="bg-secondary w-50">
 		<table class="table table-bordered">
