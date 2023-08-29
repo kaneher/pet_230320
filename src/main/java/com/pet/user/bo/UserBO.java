@@ -72,15 +72,15 @@ public class UserBO {
 		
 		// 만일 모든 칸이 비어있으면 수행하지 않을 것
 		// 칸이 비어있으면 비어있는 칸의 값은 이미 존재하는 데이터로 채울 것
-		if (email.equals(null)) {
+		if (email.equals("")) {
 			email = userEntity.getEmail();
 		}
 		
-		if (address.equals(null)) {
+		if (address.equals("")) {
 			address = userEntity.getAddress();
 		}
 		
-		if (phoneNumber.equals(null)) {
+		if (phoneNumber.equals("")) {
 			phoneNumber = userEntity.getPhoneNumber();
 		}
 		

@@ -42,10 +42,6 @@
 			let file = $('#file').val().trim();
 			
 			// validation check
-			if (!password) {
-				alert("변경할 비밀번호를 입력해주세요.");
-				return;
-			}
 			if (file != "") {
 				let ext = file.split(".").pop().toLowerCase();
 				//alert(ext);

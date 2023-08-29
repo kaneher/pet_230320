@@ -26,7 +26,7 @@
 		<section class="py-3 contents">
 			<jsp:include page="../${view}.jsp" />
 		</section>
-		<footer class="">
+		<footer class="pt-3">
 			<jsp:include page="/WEB-INF/jsp/include/footer.jsp" />
 		</footer>
 	</div>

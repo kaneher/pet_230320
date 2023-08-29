@@ -154,8 +154,15 @@ public class UserRestController {
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		// password hashing
-		SHA256 sha256 = new SHA256();
-		String hashedPassword = sha256.encrypt(password);
+		String hashedPassword = null;
+		UserEntity userEntity = new UserEntity();
+		userEntity = userBO.getUserEntityByUserId(userId);
+		if (password.equals("")) {
+			hashedPassword = userEntity.getPassword();
+		} else {
+			SHA256 sha256 = new SHA256();
+			hashedPassword = sha256.encrypt(password);
+		}
 		
 		// DB update
 		userBO.updateUserInformation(userId, userLoginId, hashedPassword, email, address, phoneNumber, file);
