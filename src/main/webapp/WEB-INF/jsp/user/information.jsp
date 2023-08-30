@@ -30,5 +30,5 @@
 	</table>
 </div>
 <div class="container d-flex justify-content-center">
-	<a href="/user/update_user_information_view">내 정보 수정</a>
+	<a href="/user/update_user_information_view" class="btn btn-info">내 정보 수정</a>
 </div>
