@@ -19,7 +19,7 @@ public class MapController {
 	private UserBO userBO;
 	
 	@GetMapping("/detail_view")
-	public String map(
+	public String mapDetailView(
 			Model model,
 			HttpSession session) {
 		

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="d-flex justify-content-center">
 	<div class="w-50">
-		<h1>글 목록</h1>
+		<h1>커뮤니티</h1>
 		
 		<table class="table">
 			<thead>

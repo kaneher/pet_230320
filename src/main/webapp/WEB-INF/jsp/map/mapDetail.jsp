@@ -1,27 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<div class="map_wrap">
-	<div id="map"
-		style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-
-	<div id="menu_wrap" class="bg_white">
-		<div class="option">
-			<div>
-				<form onsubmit="searchPlaces(); return false;">
-					주소 : <input type="text" value="${userEntity.address} 동물병원" id="keyword" size="25">
-					<button type="submit">검색하기</button>
-				</form>
+<div class="map-box">
+	<div class="map_wrap">
+		<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+		<div id="menu_wrap" class="bg_white">
+			<div class="option">
+				<div>
+					<form onsubmit="searchPlaces(); return false;">
+						주소 : <input type="text" value="${userEntity.address} 동물병원" id="keyword" size="25">
+						<button type="submit">검색하기</button>
+					</form>
+				</div>
 			</div>
+			<hr>
+			<ul id="placesList"></ul>
+			<div id="pagination"></div>
 		</div>
-		<hr>
-		<ul id="placesList"></ul>
-		<div id="pagination"></div>
 	</div>
 </div>
-
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e57b71aadce8394b31580f9fdce5a0b4&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e57b71aadce8394b31580f9fdce5a0b4&libraries=services"></script>
 
 <script>
 
