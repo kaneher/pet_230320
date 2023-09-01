@@ -11,7 +11,7 @@
     <a class="nav-link" href="/map/detail_view">주소 근처 동물병원 검색</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/calendar/detail_view">일정관리</a>
+    <a class="nav-link" href="/calendar/detail_view">산책관리</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/post/post_list_view">커뮤니티</a>
