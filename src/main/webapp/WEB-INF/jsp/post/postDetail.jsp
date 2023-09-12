@@ -9,9 +9,9 @@
 		<textarea id="content" class="form-control" rows="10" placeholder="내용을 입력하세요">${post.content}</textarea>
 		
 		<%-- 이미지가 있을 때만 이미지 영역 추가 --%>
-		<c:if test="${not empty post.imagePath}">
+		<c:if test="${not empty post.postImagePath}">
 			<div class="my-3">
-				<img src="${post.imagePath}" alt="업로드 된 이미지" width="300">
+				<img src="${post.postImagePath}" alt="업로드 된 이미지" width="300">
 			</div>
 		</c:if>
 		
